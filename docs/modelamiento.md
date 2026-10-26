@@ -46,24 +46,49 @@ $$
 \vec{a}_{M}=a_{M}J\hat{r}.
 $$
 
+Dado que esta aceleración es perpendicular a la LOS y no a la dirección de movimiento del misil, la velocidad $\vec{v}_M$ a priori no es constante. Para ello, debemos considerar sólo la proyección de $\vec{a}_M$ perpendicular a $\vec{v}_M$. 
+
+Sea $\hat{v}_M = \frac{\vec{v}_{M}}{\lVert \vec{v}_{M} \rVert }$. Al desarrollar la componente $J\hat{v}_{M}$ perpendicular a la velocidad, se llega a
+
+$$
+\begin{align*}
+\vec{a}^{\perp}_{M}&= \langle \vec{a}_{M}, J\hat{v}_{M} \rangle J\hat{v}_{M}  \\
+&= a_{M}\langle J\hat{r}, J\hat{v}_{M} \rangle J\hat{v}_{M} \\
+&= a_{M}\left( \hat{r}^{\intercal}J^{\intercal}J\hat{v}_{M} \right)J\hat{v}_{M} \\
+&=a_{M}\left( \hat{r}^{\intercal}\hat{v}_{M} \right)J\hat{v}_{M} \\
+&= a_{M}\langle \hat{r},\hat{v}_{M}  \rangle J\hat{v}_{M}  
+\end{align*}
+$$
+
+De esta forma, podemos hacer que la aceleración del proyectil sólo use esta componente para desplazarse, es decir que reasignaremos el valor de la aceleración del proyectil como
+
+$$\vec{a}_{M}\leftarrow\vec{a}^{\perp}_{M} = a_{M}\langle \hat{r},\hat{v}_{M}  \rangle J\hat{v}_{M},$$
+
+de modo que 
+
+$$
+\frac{d}{dt}\lVert v_{M}(t) \rVert ^{2}=2\langle v_{M}(t), \dot{v} _{M}(t)\rangle =2a_{M}\langle \hat{r}, \hat{v} _{M}\rangle \underbrace{ \langle v_{M}(t), J\hat{v}_{M}(t) \rangle }_{ 0 } =0
+$$
+y por lo tanto $\lVert v_M(t) \rVert=V_M$ es constante.
+
 Con todo lo anterior, es posible expresar la dinámica como un sistema de la forma $\dot{z}(t)=f(z(t),u(t)),\ z(0)=z_{0}$. De la definición de $\vec{r}$, tenemos que 
 
 $$
 \frac{d\vec{r}}{dt}=\frac{d}{dt}\vec{x}_{T}-\frac{d}{dt}\vec{x}_{M}=\vec{v}_{T}-\vec{v}_{M}.
 $$
 
-Definiendo $\vec{v}=\vec{v}_{T}-\vec{v}_{M}$, se tiene además que
+Definiendo $\vec{v}=\vec{v}_{T}-\vec{v}_{M}$, se tiene que $\hat{v}_M=\frac{\vec{v}_{T}-\vec{v}}{\lVert \vec{v}_{T}-\vec{v} \rVert }$ y además
 
 $$
-\frac{d \vec{v}}{dt}=\frac{d}{dt}\vec{v}_{T}-\frac{d}{dt}\vec{v}_{M}=a_{T}J\hat{v}_{T}-a_{M}J\hat{r}
+\frac{d \vec{v}}{dt}=\frac{d}{dt}\vec{v}_{T}-\frac{d}{dt}\vec{v}_{M}=a_{T}J\hat{v}_{T}-a_{M}\langle \hat{r},\hat{v}_{M}  \rangle J\hat{v}_{M} 
 $$
 
 Así, el sistema se expresa de la forma
 
 $$
-\begin{align}\frac{d\vec{r}}{dt}&= \vec{v}, \qquad \qquad \qquad \qquad \qquad \quad\vec{r}(0)=\vec{x}_{T,0}-\vec{x}_{M,0}\\
-\frac{d\vec{v}}{dt}&= a_{T}J\frac{\vec{v_T}}{\lVert \vec{v_T} \rVert }-a_{M}J\frac{\vec{r}}{\lVert \vec{r} \rVert }, \qquad \vec{v}(0)=\vec{v}_{T,0}-\vec{v}_{M,0}\\
-\frac{d\vec{v}_{T}}{dt}&= a_{T}J\frac{\vec{v}_T}{\lVert \vec{v}_T \rVert }, \qquad \qquad\qquad  \quad \vec{v}_{T}(0)=\vec{v}_{T,0}
+\begin{align}\frac{d\vec{r}}{dt}&= \vec{v}, \qquad \qquad \qquad \qquad \qquad \qquad\quad\vec{r}(0)=\vec{x}_{T,0}-\vec{x}_{M,0}\\
+\frac{d\vec{v}}{dt}&= a_{T}J\frac{\vec{v_T}}{\lVert \vec{v_T} \rVert }-a_{M}\langle \hat{r},\hat{v}_{M}  \rangle J\hat{v}_{M} , \qquad \vec{v}(0)=\vec{v}_{T,0}-\vec{v}_{M,0}\\
+\frac{d\vec{v}_{T}}{dt}&= a_{T}J\frac{\vec{v}_T}{\lVert \vec{v}_T \rVert }, \qquad \qquad\qquad  \qquad\quad \ \ \vec{v}_{T}(0)=\vec{v}_{T,0}
 \end{align}
 $$
 
@@ -71,7 +96,7 @@ donde el objetivo a un tiempo final $t_{f}$ es que $\vec{r}(t_{f})=0$, indicando
 
 ## Modelo en función de ángulos
 
-Sean $\lambda$ el ángulo de la LOS, $\theta_{M}$ el ángulo de movimiento del proyectil y $\theta_{T}$ el del objetivo, todos respecto al eje horizontal. Al definir las magnitudes $R=\lVert\vec r\rVert$, $V=\lVert\vec v\rVert$ y $V_T=\lVert\vec v_T\rVert$, tenemos que
+Sean $\lambda$ el ángulo de la LOS, $\theta$ el ángulo de la velocidad relativa, $\theta_M$ el ángulo de movimiento del proyectil y $\theta_T$ el del objetivo, todos respecto al eje horizontal. Al definir las magnitudes $R=\lVert\vec r\rVert$, $V=\lVert\vec v\rVert$ y $V_T=\lVert\vec v_T\rVert$, tenemos que
 
 $$  
 \vec r=R\begin{pmatrix}\cos\lambda\\ \sin\lambda\end{pmatrix},\quad  
@@ -79,7 +104,7 @@ $$
 \vec v_T=V_T\begin{pmatrix}\cos\theta_T\\ \sin\theta_T\end{pmatrix}.
 $$
 
-Además, podemos expresar las direcciones $\hat r$, $\hat v$, $\hat v_T$ y sus rotaciones como
+Además, podemos expresar las direcciones $\hat r$, $\hat v$, $\hat v_T$, $\hat v_M$ y sus rotaciones como
 
 $$
 \begin{align}\hat r&=\begin{pmatrix}\cos\lambda\\ \sin\lambda\end{pmatrix},&  
@@ -87,7 +112,9 @@ J\hat r&=\begin{pmatrix}-\sin\lambda\\ \cos\lambda\end{pmatrix},\\
 \hat v&=\begin{pmatrix}\cos\theta\\ \sin\theta\end{pmatrix},&  
 J\hat v&=\begin{pmatrix}-\sin\theta\\ \cos\theta\end{pmatrix},\\
 \hat v_T&=\begin{pmatrix}\cos\theta_T\\ \sin\theta_T\end{pmatrix},&  
-J\hat v_T&=\begin{pmatrix}-\sin\theta_T\\ \cos\theta_T\end{pmatrix}.\end{align}
+J\hat v_T&=\begin{pmatrix}-\sin\theta_T\\ \cos\theta_T\end{pmatrix},\\
+\hat v_M&=\begin{pmatrix}\cos\theta_M\\ \sin\theta_M\end{pmatrix},&
+J\hat v_M&=\begin{pmatrix}-\sin\theta_M\\ \cos\theta_M\end{pmatrix}.\end{align}
 $$
 
 Derivando la expresión de $\vec{r}$ respecto al tiempo, obtenemos
@@ -116,7 +143,11 @@ $$
 $$
 
 Análogamente, al proyectar sobre las direcciones $\hat{v}_T$ y $J\hat{v}_T$, obtenemos
-$$\dot{V}_T=0,\qquad \dot{\theta}_T=\frac{a_T}{V_T}.$$
+
+$$
+\dot{V}_T=0,\qquad \dot{\theta}_T=\frac{a_T}{V_T}.
+$$
+
 De esta forma, la magnitud de la velocidad del objetivo se mantiene constante, mientras que su dirección varía según la aceleración perpendicular $a_T$.
 
 Por último, para la velocidad relativa se tiene que
@@ -125,31 +156,32 @@ $$
 \frac{d\vec v}{dt}=\dot V\begin{pmatrix}\cos\theta\\ \sin\theta\end{pmatrix}+V\dot\theta\begin{pmatrix}-\sin\theta\\ \cos\theta\end{pmatrix}.  
 $$
 
-Como $\frac{d\vec v}{dt}=a_TJ\hat v_T-uJ\hat r$, al proyectar sobre las direcciones $\hat v$ y $J\hat v$, resulta
+Definiendo $L:= \theta_M - \lambda$, se tiene que $\left\langle\hat r,  \hat v_M\right\rangle=\cos(\theta_M - \lambda) = \cos(L)$, y luego $\frac{d\vec v}{dt}=a_TJ\hat v_T-u\cos L\,J\hat v_M$. Al proyectar sobre las direcciones $\hat v$ y $J\hat v$, resulta
 
 $$
 \begin{align}  
-\left\langle\frac{d\vec v}{dt},\hat v\right\rangle  
-&=\langle a_TJ\hat v_T-uJ\hat r,\hat v\rangle\implies \dot V=a_T\sin(\theta-\theta_T)-u\sin(\theta-\lambda),\\ 
-\left\langle\frac{d\vec v}{dt},J\hat v\right\rangle  
-&=\langle a_TJ\hat v_T-uJ\hat r,J\hat v\rangle
-\implies \dot\theta=\frac{a_T\cos(\theta-\theta_T)-u\cos(\theta-\lambda)}{V}.  
+\left\langle\frac{d\vec v}{dt},\hat v\right\rangle
+&=\langle a_TJ\hat v_T-u\cos (L) J\hat v_M,\hat v\rangle\
+&\implies \dot V=a_T\sin(\theta-\theta_T)-u\cos L\sin(\theta-\theta_M),\\
+\left\langle\frac{d\vec v}{dt},J\hat v\right\rangle
+&=\langle a_TJ\hat v_T-u\cos (L) J\hat v_M,J\hat v\rangle\
+&\implies \dot\theta=\frac{a_T\cos(\theta-\theta_T)-u\cos L\cos(\theta-\theta_M)}{V}.
 \end{align}  
 $$
 
-Con todo lo anterior, el sistema puede expresarse mediante las cinco variables de estado $z=(R,\lambda,V,\theta,\theta_T)$, con $V_T$ constante, obteniendo
+Con todo lo anterior, el sistema puede expresarse mediante las cinco variables de estado $z=(R,\lambda,V,\theta,\theta_T)$, con $V_T$ y $V_M$ constantes, obteniendo
 
 $$
 \begin{align}
 \dot R&=V\cos(\theta-\lambda),\\ 
 \dot\lambda&=\frac{V}{R}\sin(\theta-\lambda),\\  
-\dot V&=a_T\sin(\theta-\theta_T)-u\sin(\theta-\lambda),\\
-\dot\theta&=\frac{a_T\cos(\theta-\theta_T)-u\cos(\theta-\lambda)}{V},\\  
+\dot V&=a_T\sin(\theta-\theta_T)-u\cos L\sin(\theta-\theta_M),\\
+\dot\theta&=\frac{a_T\cos(\theta-\theta_T)-u\cos L\cos(\theta-\theta_M)}{V},\\
 \dot\theta_T&=\frac{a_T}{V_T}.
 \end{align}
 $$
 
-para $R>0$, $V>0$ y $V_T>0$. Las condiciones iniciales se obtienen a partir de las posiciones y velocidades relativas iniciales del sistema general.
+para $R>0$, $V>0$, $V_T>0$ y $V_M>0$, donde $L=\theta_M-\lambda$ y $\theta_M$ se determina a partir de las variables de estado según la expresión anterior. Las condiciones iniciales se obtienen a partir de las posiciones y velocidades relativas iniciales del sistema general.
 
 ## Caso Lineal
 
@@ -157,19 +189,33 @@ Para trabajar con un sistema lineal, consideraremos $a_{T}=0$. En dicho caso, de
 
 $$
 \begin{align}\frac{d\vec{r}}{dt}= \vec{v},\qquad 
-\frac{d\vec{v}}{dt}=-uJ\frac{\vec{r}}{\lVert \vec{r} \rVert },\qquad\frac{d\vec{v}_{T}}{dt}= 0,
-\end{align}$$
-
-en donde si expresamos la dinámica en función de las componentes de $\vec{r}=(r_{x},r_{y})$ y $\vec{v}=(v_{x},v_{y})$, tenemos que $\dot{r}_{x}=v_{x},\ \dot{r}_{y}=v_{y},$ y además
-
-$$
-\begin{align}\frac{d}{dt}\begin{pmatrix}v_{x} \\v_{y}\end{pmatrix} =-uJ \hat{r}=-u\begin{pmatrix}0 & -1 \\  1 & 0 \end{pmatrix}\begin{pmatrix}\cos\lambda \\  \sin\lambda\end{pmatrix}\end{align}=\begin{pmatrix}\sin\lambda \\  -\cos\lambda \end{pmatrix}u.
+\frac{d\vec{v}}{dt}=-u\langle\hat r,\hat v_M\rangle J\hat v_M,\qquad\frac{d\vec{v}_{T}}{dt}= 0,
+\end{align}
 $$
 
-Asumimos además que $\lambda$ es pequeño, de modo que $\cos(\lambda)\approx 1$ y $\sin(\lambda)\approx \lambda$, y luego podemos expresar la dinámica como
+Dado que $\langle\hat r,\hat v_M\rangle=\cos L$, si expresamos la dinámica en función de las componentes de $\vec r=(r_x,r_y)$ y $\vec v=(v_x,v_y)$, obtenemos $\dot r_x=v_x,\ \dot r_y=v_y$, y además
 
 $$
-\frac{d}{dt}\begin{pmatrix}r_{x } \\  r_{y} \\  v_{x} \\  v_{y}\end{pmatrix}=\begin{pmatrix}0&0&1& 0 \\  0&0&0&1 \\  0&0&0&0 \\ 0&0&0&0\end{pmatrix}\begin{pmatrix}r_x  \\  r_{y} \\  v_{x} \\  v_{y}\end{pmatrix}+\begin{pmatrix}0 \\  0 \\  \lambda \\  -1\end{pmatrix}u
+\begin{align*}
+\frac{d}{dt}\begin{pmatrix}v_{x} \\ v_{y}\end{pmatrix} &=-u\cos(L)J\hat v_M\\
+&=-u\cos (L)\begin{pmatrix}0&-1\\ 1&0\end{pmatrix}
+\begin{pmatrix}\cos\theta_M\\ \sin\theta_M\end{pmatrix}\\
+&=u\cos (L)\begin{pmatrix}\sin\theta_M\\ -\cos\theta_M\end{pmatrix}
+\end{align*}
+$$
+
+Asumimos además que $\lambda$ y $\theta_M$ son pequeños, de modo que $L$ también lo es. Así, $\cos L\approx1$, $\cos\theta_M\approx1$ y $\sin\theta_M\approx\theta_M$. 
+
+Al linealizar alrededor de una trayectoria rectilínea con $\lambda\approx\theta_M\approx u \approx 0$, el término $u\theta_M$ es de segundo orden, por lo que se obtiene
+
+$$
+\dot v_x\approx0,\qquad \dot v_y\approx-u.
+$$
+
+Luego podemos expresar la dinámica linealizada como
+
+$$
+\frac{d}{dt}\begin{pmatrix}r_{x } \\  r_{y} \\  v_{x} \\  v_{y}\end{pmatrix}=\begin{pmatrix}0&0&1& 0 \\  0&0&0&1 \\  0&0&0&0 \\ 0&0&0&0\end{pmatrix}\begin{pmatrix}r_x  \\  r_{y} \\  v_{x} \\  v_{y}\end{pmatrix}+\begin{pmatrix}0 \\  0 \\  0 \\  -1\end{pmatrix}u
 $$
 
 Adicionalmente, asumimos que la velocidad de acercamiento $V_c=-\dot R=-\langle \vec{v}, \hat{r} \rangle$ es positiva. Como $\lambda$ es pequeño, tenemos que
