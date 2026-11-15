@@ -26,6 +26,8 @@
 
 Los notebooks de `src/modelos/` usan el kernel de Julia de Jupyter. La primera celda activa automáticamente el entorno de este repositorio.
 
+Los gráficos y GIF generados se guardan en `outputs/`, organizados en subcarpetas según el modelo.
+
 Si todavía no están instaladas las dependencias, ejecutar una vez `Pkg.instantiate()` desde Julia, iniciada en la carpeta del repositorio con `julia --project=.` (ver Instalación).
 
 ## Documentación
@@ -39,5 +41,7 @@ Para detalles sobre el modelamiento, ver `docs/`.
 - [x] Programar el caso no lineal con un proyectil y target.
 - [ ] Estudiar la controlabilidad, observabilidad y estabilidad de los problemas.
 - [ ] Realizar simulaciones, comparando distintos métodos numéricos.
-- [ ] Programar el caso con 2 proyectiles.
-- [ ] Programar el caso con $N$ proyectiles.
+- [ ] Estudiar la aplicabilidad de HJB.
+- [x] Programar el caso con 2 proyectiles.
+- [x] Programar el caso con $N$ proyectiles.
+- [ ] Investigar sobre posibles soluciones analíticas.
