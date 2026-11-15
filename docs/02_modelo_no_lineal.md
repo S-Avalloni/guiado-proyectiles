@@ -116,7 +116,7 @@ De esta forma, podemos estudiar la intercepción mediante la condición terminal
 
 Consideramos el sistema no lineal obtenido anteriormente, con estado $x=(r_x,r_y,\theta_M)$ y dinámica $\dot x=f(x,u)$. Para formular el problema de control óptimo, consideramos un conjunto compacto de controles $U=[-u_{\max},u_{\max}]$, con $u_{\max}>0$ la cota de la magnitud de la aceleración del proyectil.
 
-Para cada tiempo final $T>0$, consideramos controles $u\in L^\infty([0,T],U)$ cuya trayectoria existe en $[0,T]$. Las condiciones iniciales se obtienen de las posiciones y la velocidad inicial del proyectil mediante
+Para cada tiempo final $t_f>0$, consideramos controles $u\in L^\infty([0,t_f],U)$ cuya trayectoria existe en $[0,t_f]$. Las condiciones iniciales se obtienen de las posiciones y la velocidad inicial del proyectil mediante
 
 $$
 x(0)=x_0=\left(x_{T,0}^{(1)}-x_{M,0}^{(1)},\ x_{T,0}^{(2)}-x_{M,0}^{(2)},\ \operatorname{atan2}(v_{M,0}^{(2)},v_{M,0}^{(1)})\right).
@@ -128,31 +128,31 @@ $$
 \ell(x,u)=\frac{\alpha}{2}u^2+\beta,\qquad \alpha>0,\quad\beta>0,
 $$
 
-en donde $\alpha$ y $\beta$ controlan qué tanto se penaliza el esfuerzo de control y el tiempo de llegada respectivamente. Como no penalizaremos la posición cerca del objetivo ni la orientación final del proyectil, tomamos el costo terminal $g(T,x(T))=0$. De esta forma, el problema de control óptimo consiste en
+en donde $\alpha$ y $\beta$ controlan qué tanto se penaliza el esfuerzo de control y el tiempo de llegada respectivamente. Como no penalizaremos la posición cerca del objetivo ni la orientación final del proyectil, tomamos el costo terminal $g(t_f,x(t_f))=0$. De esta forma, el problema de control óptimo consiste en
 
 $$
-\min_{\substack{T>0\\u\in L^\infty([0,T],U)}}
-J(u,T):=\int_0^T\ell(x(t),u(t))\,dt+g(T,x(T)),
+\min_{\substack{t_f>0\\u\in L^\infty([0,t_f],U)}}
+J(u,t_f):=\int_0^{t_f}\ell(x(t),u(t))\,dt+g(t_f,x(t_f)),
 $$
 
 sujeto a la dinámica no lineal, la condición inicial $x(0)=x_0$ y la condición terminal
 
 $$
-h(x(T))=0,\qquad h(x):=r_x^2+r_y^2-\varepsilon^2,
+h(x(t_f))=0,\qquad h(x):=r_x^2+r_y^2-\varepsilon^2,
 $$
 
 de modo que la dinámica enstá en una región donde $R>0$ y no aparece la singularidad en $R=0$. En la práctica agregaremos un pequeño delta $\delta>0$ al denominador para que las simulaciones numéricas sean más estables.
 
-Así, obtenemos un problema de Bolza a tiempo final libre y costo terminal nulo, que en particular también es un problema de Lagrange. Se tiene además $e[x]:=(T,x(T))\in B$, con
+Así, obtenemos un problema de Bolza a tiempo final libre y costo terminal nulo, que en particular también es un problema de Lagrange. Se tiene además $e[x]:=(t_f,x(t_f))\in B$, con
 
 $$
-B=\{(T,x)\in[0,+\infty)\times\mathbb R^3:h(x)=0\}.
+B=\{(t_f,x)\in[0,+\infty)\times\mathbb R^3:h(x)=0\}.
 $$
 
 
 ## Principio de Pontryagin
 
-Según el principio de Pontryagin para problemas de Bolza, si $(x(\cdot),u(\cdot),T)$ es una solución óptima, existen un multiplicador $p_0\geq0$ y un coestado $p=(p_x,p_y,p_\theta)$ absolutamente continuo, con $(p_0,p(\cdot))$ no trivial. Para simplificar la explicación, trabajaremos primero con el caso normal, es decir, suponiendo $p_0>0$. En este caso podemos dividir todos los multiplicadores por $p_0$ y tomar $p_0=1$, de modo que el prehamiltoniano queda dado por
+Según el principio de Pontryagin para problemas de Bolza, si $(x(\cdot),u(\cdot),t_f)$ es una solución óptima, existen un multiplicador $p_0\geq0$ y un coestado $p=(p_x,p_y,p_\theta)$ absolutamente continuo, con $(p_0,p(\cdot))$ no trivial. Para simplificar la explicación, trabajaremos primero con el caso normal, es decir, suponiendo $p_0>0$. En este caso podemos dividir todos los multiplicadores por $p_0$ y tomar $p_0=1$, de modo que el prehamiltoniano queda dado por
 
 $$
 H(x,u,p):=\ell(x,u)+\langle p,f(x,u)\rangle.
@@ -190,7 +190,7 @@ $$
 \end{align}
 $$
 
-Por otro lado, el control debe satisfacer, para casi todo $t\in[0,T]$,
+Por otro lado, el control debe satisfacer, para casi todo $t\in[0,t_f]$,
 
 $$
 H(x(t),u(t),p(t))=\min_{w\in U}H(x(t),w,p(t)).
@@ -208,39 +208,39 @@ $$
 u(t)=\operatorname{proj}_{[-u_{\max},u_{\max}]}\left(-\frac{p_\theta(t)c(x(t))}{\alpha V_M}\right).
 $$
 
-### Condiciones necesarias en $T$
+### Condiciones necesarias en $t_f$
 
 Por otro lado y denotando $\Theta(t):=H(x(t),u(t),p(t))$ con $u$ óptimo y $p_0=1$, para un problema de Bolza con tiempo y estado iniciales fijos, la condición general de transversalidad se escribe como
 
 $$
-p_{0}dg+(\Theta(t)dt-\langle p, dx_{t} \rangle)|_{t=t_{0}}^{t=T}=0,\quad (dt_{0},dx_{0},dT,dx_{f})\in T_{e[x]}B
+p_{0}dg+(\Theta(t)dt-\langle p, dx_{t} \rangle)|_{t=t_{0}}^{t=t_f}=0,\quad (dt_{0},dx_{0},dt_f,dx_{f})\in T_{e[x]}B
 $$
 
 Como $t_{0},x_{0}$ son fijos, y además $g \equiv 0$, la condición se reduce a
 
 $$
-\Theta(T)dT-\langle p(T),dx  \rangle=0,\quad (dT,dx) \in T_{e[x]}B.
+\Theta(t_f)dt_f-\langle p(t_f),dx  \rangle=0,\quad (dt_f,dx) \in T_{e[x]}B.
 $$
 
-Como $B$ está definido por $h(x_f)=0$ sin dependencia explícita del tiempo, las variaciones cumplen $\langle\nabla h(x(T)),d x\rangle=0$, mientras que $dT$ es libre.
+Como $B$ está definido por $h(x_f)=0$ sin dependencia explícita del tiempo, las variaciones cumplen $\langle\nabla h(x(t_f)),d x\rangle=0$, mientras que $dt_f$ es libre.
   
-Tomando $dx=0$ y variando $d T$, se obtiene $\Theta(T)=0$. Por otro lado, al tomar $d T=0$, se deduce que $p(T)$ es perpendicular a todas las variaciones tangentes a la frontera del objetivo. Además, $\nabla h(x(T))=(2r_x(T),2r_y(T),0)\neq0$ para $\varepsilon>0$.
+Tomando $dx=0$ y variando $dt_f$, se obtiene $\Theta(t_f)=0$. Por otro lado, al tomar $dt_f=0$, se deduce que $p(t_f)$ es perpendicular a todas las variaciones tangentes a la frontera del objetivo. Además, $\nabla h(x(t_f))=(2r_x(t_f),2r_y(t_f),0)\neq0$ para $\varepsilon>0$.
 
-Como el espacio normal a la frontera está generado por $\nabla h(x(T))$ y tiene dimensión 1 (dado que estamos en $\mathbb{R}^3$ y el espacio tangente es de dimensión 2 al tener una restricción $\langle \nabla h(x(T)), dx\rangle=0$ con $\nabla h(x(T))\neq0$), existe $\nu\in\mathbb R$ tal que $p(T)=\nu\nabla h(x(T))$. Así, llegamos a
+Como el espacio normal a la frontera está generado por $\nabla h(x(t_f))$ y tiene dimensión 1 (dado que estamos en $\mathbb{R}^3$ y el espacio tangente es de dimensión 2 al tener una restricción $\langle \nabla h(x(t_f)), dx\rangle=0$ con $\nabla h(x(t_f))\neq0$), existe $\nu\in\mathbb R$ tal que $p(t_f)=\nu\nabla h(x(t_f))$. Así, llegamos a
 
 $$
 \begin{align}
-p_x(T)&=2\nu r_x(T),\\
-p_y(T)&=2\nu r_y(T),\\
-p_\theta(T)&=0,\\
-\Theta(T)&=0.
+p_x(t_f)&=2\nu r_x(t_f),\\
+p_y(t_f)&=2\nu r_y(t_f),\\
+p_\theta(t_f)&=0,\\
+\Theta(t_f)&=0.
 \end{align}
 $$
 
-Usando $p_\theta(T)=0$ en la expresión del control, tenemos que 
+Usando $p_\theta(t_f)=0$ en la expresión del control, tenemos que
 
 $$
-u(T)=\operatorname{proj}_{[-u_{\max},u_{\max}]}\left(-\frac{p_\theta(T)c(x(T))}{\alpha V_M}\right)
+u(t_f)=\operatorname{proj}_{[-u_{\max},u_{\max}]}\left(-\frac{p_\theta(t_f)c(x(t_f))}{\alpha V_M}\right)
 =0,
 $$
 
@@ -248,20 +248,20 @@ y reemplazando luego las condiciones de transversalidad en el prehamiltoniano, o
 
 $$
 \begin{align}
-0&=\Theta(T)=H(x(T),u(T),p(T))\\
-&=\frac{\alpha}{2}u(T)^2+\beta-V_M\left(p_x(T)\cos\theta_M(T)+p_y(T)\sin\theta_M(T)\right)
-+\frac{p_\theta(T)u(T)}{V_M}c(x(T))\\
-&=\beta-V_M\left(p_x(T)\cos\theta_M(T)+p_y(T)\sin\theta_M(T)\right)\\
-&=\beta-V_M\left(2\nu r_x(T)\cos\theta_M(T)+2\nu r_y(T)\sin\theta_M(T)\right)\\
-&=\beta-2\nu V_M\left(r_x(T)\cos\theta_M(T)+r_y(T)\sin\theta_M(T)\right)\\
-&=\beta-2\nu V_M \langle r(T), \hat{v}_{M}(T) \rangle.
+0&=\Theta(t_f)=H(x(t_f),u(t_f),p(t_f))\\
+&=\frac{\alpha}{2}u(t_f)^2+\beta-V_M\left(p_x(t_f)\cos\theta_M(t_f)+p_y(t_f)\sin\theta_M(t_f)\right)
++\frac{p_\theta(t_f)u(t_f)}{V_M}c(x(t_f))\\
+&=\beta-V_M\left(p_x(t_f)\cos\theta_M(t_f)+p_y(t_f)\sin\theta_M(t_f)\right)\\
+&=\beta-V_M\left(2\nu r_x(t_f)\cos\theta_M(t_f)+2\nu r_y(t_f)\sin\theta_M(t_f)\right)\\
+&=\beta-2\nu V_M\left(r_x(t_f)\cos\theta_M(t_f)+r_y(t_f)\sin\theta_M(t_f)\right)\\
+&=\beta-2\nu V_M \langle r(t_f), \hat{v}_{M}(t_f) \rangle.
 \end{align}
 $$
 
 Así,
 
 $$
-\nu \langle \vec{r}(T), \vec{v}_M(T)\rangle = \frac{\beta}{2}.
+\nu \langle \vec{r}(t_f), \vec{v}_M(t_f)\rangle = \frac{\beta}{2}.
 $$
 
 ### Caso particular
@@ -280,16 +280,16 @@ $$
 x(t)=(R_0-V_Mt,0,0).
 $$
 
-Como buscamos la primera llegada a la frontera del objetivo, se tiene $r_x(T)=\varepsilon$, de modo que
+Como buscamos la primera llegada a la frontera del objetivo, se tiene $r_x(t_f)=\varepsilon$, de modo que
 
 $$
-R_0-V_MT=\varepsilon\implies T^*=\frac{R_0-\varepsilon}{V_M}.
+R_0-V_Mt_f=\varepsilon\implies t_f^*=\frac{R_0-\varepsilon}{V_M}.
 $$
 
 Por último, para cualquier control admisible que alcance el objetivo se tiene
 
 $$
-J(u^*,T)=\frac{\alpha}{2}\int_0^Tu^*(t)^2\,dt+\beta T = \beta T \geq \beta T^* =J(u^*,T^*)\implies J^* = \beta T^*.
+J(u^*,t_f)=\frac{\alpha}{2}\int_0^{t_f}u^*(t)^2\,dt+\beta t_f = \beta t_f \geq \beta t_f^* =J(u^*,t_f^*)\implies J^* = \beta t_f^*.
 $$
 
 Por lo tanto, para este caso particular obtenemos la solución óptima
@@ -297,8 +297,8 @@ Por lo tanto, para este caso particular obtenemos la solución óptima
 $$
 \begin{align}
 u^*(t)&=0,\\
-x^*(t)&=(R_0-V_Mt,0,0),\qquad 0\leq t\leq T^*,\\
-T^*&=\frac{R_0-\varepsilon}{V_M},\\
+x^*(t)&=(R_0-V_Mt,0,0),\qquad 0\leq t\leq t_f^*,\\
+t_f^*&=\frac{R_0-\varepsilon}{V_M},\\
 J^*&=\frac{\beta(R_0-\varepsilon)}{V_M}.
 \end{align}
 $$

@@ -50,14 +50,14 @@ $$
 Ahora definimos la función de costo de nuestro PLC de la forma
 
 $$
-J(u) := z(T)^TQz(T) + \int_0^T u^2(t) dt,
+J(u) := z(t_f)^TQz(t_f) + \int_0^{t_f} u^2(t) dt,
 $$
 
-donde la integral penaliza el esfuerzo de control y el término terminal penaliza la separación vertical al finalizar, donde $Q=\mathrm{diag}(q_f,0)$. El parámetro $q_f>0$ es el peso de asociado a la penalización en $r_y(T)\neq0$. Se deja este elemento de la diagonal como una variable ya que es una restricción "suave" sobre la distancia final entre el objetivo y el misil, por lo que queremos encontrar una solución en función de $q_f$ para luego $q_f \to \infty$
+donde la integral penaliza el esfuerzo de control y el término terminal penaliza la separación vertical al finalizar, donde $Q=\mathrm{diag}(q_f,0)$. El parámetro $q_f>0$ es el peso de asociado a la penalización en $r_y(t_f)\neq0$. Se deja este elemento de la diagonal como una variable ya que es una restricción "suave" sobre la distancia final entre el objetivo y el misil, por lo que queremos encontrar una solución en función de $q_f$ para luego $q_f \to \infty$
 
-Además de esto el tiempo de encuentro, por lo que se dijo antes sobre ignorar las componentes en $x$ del problema, está dado por $T_{\mathrm{hit}}=-r_{x,0}/v_{x,0}>0$, ya que el objetivo no tiene aceleración y el misil tiene solamente aceleración tangencial a la LOS, de modo que en la componente $x$ se tiene $r_x(t)=r_{x,0}+v_{x,0}t$ con $r_{x,0}>0$ y $v_{x,0}<0$.
+Además de esto el tiempo de encuentro, por lo que se dijo antes sobre ignorar las componentes en $x$ del problema, está dado por $t_f=-r_{x,0}/v_{x,0}>0$, ya que el objetivo no tiene aceleración y el misil tiene solamente aceleración tangencial a la LOS, de modo que en la componente $x$ se tiene $r_x(t)=r_{x,0}+v_{x,0}t$ con $r_{x,0}>0$ y $v_{x,0}<0$.
 
-Definimos además $t_{\mathrm{go}}=T_{\mathrm{hit}}-t$ como el tiempo que falta para ese encuentro, de modo que $t_{\mathrm{go}}>0$ para $0\leq t<T_{\mathrm{hit}}$ y tiende a cero al aproximarse al tiempo final.
+Definimos además $t_{\mathrm{go}}=t_f-t$ como el tiempo que falta para ese encuentro, de modo que $t_{\mathrm{go}}>0$ para $0\leq t<t_f$ y tiende a cero al aproximarse al tiempo final.
 
 Luego, como este problema tiene un control en dimensión 1 se cumple trivialmente la condición de exsitencia y unicidad para el PLC por lo que podemos utilizar la solución de feedback lineal Riccati
 
@@ -70,7 +70,7 @@ Donde $E(t)$ cumple la dinámica de Riccati:
 $$
 \begin{align}
 \dot{E}(t) &= -A^TE(t)-E^T(t)A-E^T(t)BB^TE(t)\\
-E(T_{hit}) &= -Q
+E(t_f) &= -Q
 \end{align}
 $$
 

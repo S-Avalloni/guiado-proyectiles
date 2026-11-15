@@ -31,7 +31,7 @@ $$
 Definiendo el parámetro $r=V_m\theta$, el funcional de costo que penaliza tanto los esfuerzos de los controles como la lejanía del ángulo de referencia en el impacto, está dado por 
 
 $$
-J(u)=\frac{b}{2}(y_{1}^{2}(T)+y_{2}^{2}(T))+\frac{c}{2}(\dot{y}_{1}(T)-\dot{y}_{2}(T)-r)^{2}+\frac{1}{2}\int_{t_{0}}^{T} u_{1}^{2}(t)+u_{2}^{2}(t) \, dt,
+J(u)=\frac{b}{2}(y_{1}^{2}(t_f)+y_{2}^{2}(t_f))+\frac{c}{2}(\dot{y}_{1}(t_f)-\dot{y}_{2}(t_f)-r)^{2}+\frac{1}{2}\int_{t_{0}}^{t_f} u_{1}^{2}(t)+u_{2}^{2}(t) \, dt,
 $$
 
 donde $b>0$ es un parámetro que mide qué tanto se penalizan los errores entre posiciones relativas, y $c>0$ es un parámetro que penaliza el error de las velocidades terminales en relación a la diferencia $r$ deseada.
@@ -41,19 +41,19 @@ donde $b>0$ es un parámetro que mide qué tanto se penalizan los errores entre 
 En base al [paper mencionado](https://www.icas.org/icas_archive/ICAS2016/data/papers/2016_0387_paper.pdf), se desprende que para el sistema anterior el control óptimo está dado por 
 
 $$
-\begin{pmatrix}u_{1}(t) \\  u_{2}(t)\end{pmatrix}=-\begin{pmatrix}by_{1}(T)\tau+c(\dot{y}_{1}(T)-\dot{y}_{2}(T)-r) \\  by_{2}(T)\tau+c(\dot{y}_{1}(T)-\dot{y}_{2}(T)-r) \end{pmatrix},
+\begin{pmatrix}u_{1}(t) \\  u_{2}(t)\end{pmatrix}=-\begin{pmatrix}by_{1}(t_f)\tau+c(\dot{y}_{1}(t_f)-\dot{y}_{2}(t_f)-r) \\  by_{2}(t_f)\tau+c(\dot{y}_{1}(t_f)-\dot{y}_{2}(t_f)-r) \end{pmatrix},
 $$
 
-donde $\tau = T - t$. Para expresar esta ley de control en función del estado actual $x(t)$ y no del estado final $x(T)$, se usa la relación
+donde $\tau = t_f - t$. Para expresar esta ley de control en función del estado actual $x(t)$ y no del estado final $x(t_f)$, se usa la relación
 
 $$
-x(T) = \Phi(T, t)x(t) + \Psi(t) r,
+x(t_f) = \Phi(t_f, t)x(t) + \Psi(t) r,
 $$
 
-donde la matriz de transición $\Phi(T, t)$ y el término afín $\Psi(t)$ están dadas por
+donde la matriz de transición $\Phi(t_f, t)$ y el término afín $\Psi(t)$ están dadas por
 
 $$
-\Phi(T, t) = (I - A')^{-1}B', \qquad \Psi(t) = (I - A')^{-1}S,
+\Phi(t_f, t) = (I - A')^{-1}B', \qquad \Psi(t) = (I - A')^{-1}S,
 $$
 
 con
