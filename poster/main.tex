@@ -1,0 +1,48 @@
+% CREACIÓN DEL DOCUMENTO
+\pdfminorversion=7
+\documentclass[
+	spanish, % Idioma: spanish, english, etc.
+	final,
+	xcolor={dvipsnames,table}
+]{beamer}
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\documenttitle {Control Optimo en el guiado de Proyectiles}
+
+% IMPORTACIÓN DEL TEMPLATE
+\input{template}
+
+% CONFIGURA BEAMER
+\author{
+	Matías Olate R.,
+	Santiago Avalloni G.
+}
+\institute[shortinst]{
+	Universidad de Chile
+}
+
+% \logoleft{height=3.5cm}{logo.pdf}
+\logoright{height=5cm}{logo.pdf}
+
+\footercontent{
+	\href{https://github.com/chucorate/guiado-proyectiles}{https://github.com/chucorate/guiado-proyectiles} \hfill
+	Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile
+}
+
+% INICIO DE LAS PÁGINAS
+\begin{document}
+
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\templatePagecfg
+
+% CONFIGURACIONES FINALES
+\templateFinalcfg
+
+% ======================= INICIO DEL DOCUMENTO =======================
+
+\begin{poster}
+	\input{example} % Ejemplo, se puede borrar
+\end{poster}
+
+% FIN DEL DOCUMENTO
+\end{document}
