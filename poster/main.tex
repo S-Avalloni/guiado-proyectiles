@@ -7,10 +7,30 @@
 ]{beamer}
 
 % INFORMACIÓN DEL DOCUMENTO
-\def\documenttitle {Control Optimo en el guiado de Proyectiles}
+\def\documenttitle {Control Optimo en guiado de Proyectiles}
 
 % IMPORTACIÓN DEL TEMPLATE
 \input{template}
+
+\newlength{\logoleftimgw}
+
+% Logo izquierdo con leyenda
+%	#1	Parámetros de la imagen (height=..., width=...)
+%	#2	Archivo de imagen
+%	#3	Texto de la leyenda
+\newcommand{\logoleftcaption}[3]{%
+	\settowidth{\logoleftimgw}{\includegraphics[#1]{#2}}%
+	\def\insertlogoleft{%
+		\parbox{\logoleftimgw}{%
+			\centering
+			\includegraphics[#1]{#2}\\[1ex]
+			{\fontsize{26pt}{30pt}\selectfont\color{mitred}#3\par}%
+		}%
+	}%
+	\settowidth{\logoleftwidth}{\insertlogoleft}%
+	\addtolength{\logoleftwidth}{10ex}%
+	\setlength{\maxlogowidth}{\maxof{\logoleftwidth}{\logorightwidth}}%
+}
 
 % CONFIGURA BEAMER
 \author{
@@ -21,7 +41,7 @@
 	Universidad de Chile
 }
 
-% \logoleft{height=3.5cm}{logo.pdf}
+\logoleftcaption{height=5cm}{qr.png}{Referencia}
 \logoright{height=5cm}{logo.pdf}
 
 \footercontent{

@@ -38,7 +38,7 @@
 	\min_{u}\; J(u)=q_f\,r_y(t_f)^2+\int_0^{t_f}u^2(t)\,dt.
 	$$
 	
-	Vía Riccati y tomando $q_f\to\infty$ se recupera la \textbf{ley PLC clásica}$^{\cite{Palumbo}}$:
+	Vía Riccati y tomando $q_f\to\infty$ se recupera la \textbf{ley PLC clásica}:
 	
 	$$
 	\boxed{\;\vphantom{\frac{\frac{A}{B}}{\frac{C}{D}}}
@@ -88,7 +88,7 @@
 	$t_f^*=(R_0-\varepsilon)/V_M$.
 	\end{exampleblock}
 	{\def\marginimagetop{-2}
-		\insertimage{no_lineal/comparacion.png}{width=0.85\colwidth}{Trayectoria óptima no lineal y control $u^*(t)$ (shooting 4D).}
+		\insertimage{no_lineal/comparacion.png}{width=0.85\colwidth}{Soluciones numericas comparadas para distintos ángulos (Reflejado)}
 	}
 \end{block}
 
@@ -104,18 +104,18 @@
 	cada proyectil $i\in\{1,2\}$ se sigue la dinámica descrita en la sección anterior.
 
 	
-	El acoplamiento aparece en las condiciones terminales simultáneas$^{\cite{Lee}}$:
+	El acoplamiento aparece en las condiciones terminales simultáneas:
 
 	\vspace{-0.9cm}
 	$$
 	r_{y,i}(t_f)=0,\qquad \theta_{M,i}(t_f)=\theta_d,\qquad i=1,2.
 	$$
 
-	Al estar \textbf{asumiendo el modelo lineal} para la obtención del control óptimo un \textbf{angulo 
+	Al estar asumiendo el \textbf{modelo lineal} para la obtención del control óptimo un \textbf{angulo 
 	mayor} es cada vez \textbf{menos preciso.} 
 
 	{\def\marginimagetop{-1}
-		\insertimage{lineal_dos_proyectiles/comparacion_angulos_analitica.png}{width=0.75\colwidth}{Prueba, filler, ocupar espacio !todo}
+		\insertimage{lineal_dos_proyectiles/comparacion_angulos_analitica.png}{width=0.9\colwidth}{Trayectorias de la solución analitica para distintos ángulos de entrada}
 	}
 	%!TODO:
 	%	- Colores
@@ -138,7 +138,7 @@
 	\dot{\vec v}_i=a_TJ\hat v_T-u_i\langle\hat r_i,\hat v_{M_i}\rangle J\hat v_{M_i}.
 	$$
 
-	El acoplamiento aparece únicamente en las $N$ condiciones terminales 
+	El acoplamiento aparece sólamente en las $N$ condiciones terminales 
 	simultáneas
 	
 	\vspace{-0.9cm}
@@ -149,9 +149,10 @@
 
 	\vspace{0.5cm}
 	\begin{exampleblock}{}
-	Para objetivo estático, el estado se reduce a $(r_{x_i},r_{y_i},\theta_{M_i})$ 
+	Para objetivo estático, basta $(r_{x_i},r_{y_i},\theta_{M_i})$ 
 	y la dinámica se desacopla:
 
+	\vspace{-0.9cm}
 	$$
 	\dot r_{x_i}=-V_{M_i}\cos\theta_{M_i},\quad
 	\dot r_{y_i}=-V_{M_i}\sin\theta_{M_i},\quad
@@ -162,11 +163,13 @@
 	$0\le s_i\le\varepsilon^2$ con la restricción de trayectoria
 	$r_{x_i}^2+r_{y_i}^2+s_i\ge\varepsilon^2$, y el costo instantáneo pasa a ser
 	
+	\vspace{-0.9cm}
 	$$
 	\boxed{\;\vphantom{\frac{\frac{A}{B}}{\frac{C}{D}}}\;
 	\ell(x,w)=\beta+\sum_{i\in I}\!\Big(\tfrac{\alpha}{2}u_i^2+\gamma s_i\Big)\;}
 	$$
 	El problema de Bolza a tiempo final libre queda
+
 	$$
 	\min_{\substack{t_f>0\\w=(u,s)}}\;
 	J(w,t_f)=\int_0^{t_f}\!\Big(\beta+\frac{\alpha}{2}\sum_{i\in I}u_i^2
@@ -175,32 +178,7 @@
 	\end{exampleblock}
 
 	{\def\marginimagetop{-2}
-		\insertimage{multiproyectil/trayectorias_N8.png}{width=\colwidth}{Prueba, filler, ocupar espacio !todo}
+		\insertimage{multiproyectil/trayectorias_N8.png}{width=1.1\colwidth}{Trayectorias de 8 proyectiles con condición de llegada simultanea}
 	}
 
-\end{block}
-
-% ============================================================
-% BLOQUE 6 — Conclusiones (opcional, columna derecha)
-% ============================================================
-%\begin{block}{Conclusiones}
-%	\begin{itemize}
-%		\item El modelo lineal (PLC) es exacto en el límite de ángulos pequeños; 
-%		se degrada para $\theta_M(0)\gtrsim30°$ porque $t_f$ deja de ser 
-%		$-r_{x,0}/v_{x,0}$ y la dirección de $\vec a_M$ rota con $\lambda$.
-%		\item El modelo no lineal captura la geometría exacta pero requiere 
-%		shooting 4D con continuación en $\theta_M(0)$ para ángulos grandes.
-%		\item La extensión multiproyectil acopla las $N$ dinámicas solo por 
-%		$t_f$ y las holguras $s_i$; es tratable para $N$ pequeño y motiva 
-%		métodos de descomposición para $N$ grande.
-%	\end{itemize}
-%\end{block}
-%
-% ============================================================
-% BLOQUE 7 — Referencias (columna derecha)
-% ============================================================
-\begin{block}{Referencias}
-	\begin{fontsizeblock}[19]
-		\bibliography{library}
-	\end{fontsizeblock}
 \end{block}
